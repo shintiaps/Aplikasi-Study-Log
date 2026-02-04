@@ -1,4 +1,5 @@
 catatan = []
+mapel_favorit = []
 
 def tambah_catatan():
     print("\n=== Tambah Catatan Belajar ===")
@@ -46,7 +47,8 @@ def lihat_catatan():
         mapel = entry.get("mapel", "-")
         topik = entry.get("topik", "-")
         durasi = entry.get("durasi", "-")
-        print(f"{i}. {mapel} - {topik} ({durasi} menit)")
+        fav_mark = " ★" if mapel in mapel_favorit else ""
+        print(f"{i}. {mapel}{fav_mark} - {topik} ({durasi} menit)")
 
     print(f"\nTotal catatan: {len(catatan)}")
 
@@ -66,12 +68,55 @@ def total_waktu():
     else:
         print(f"Total waktu belajar: {total} menit")
 
+# === Fitur Mapel Favorit ===
+
+def tambah_favorit():
+    print("\n=== Tambah Mapel Favorit ===")
+    mapel = input("Masukkan nama mapel yang ingin dijadikan favorit: ").strip()
+    if not mapel:
+        print("Mapel tidak boleh kosong. Batal.")
+        return
+    if mapel in mapel_favorit:
+        print(f"'{mapel}' sudah ada dalam daftar favorit.")
+        return
+    mapel_favorit.append(mapel)
+    print(f"✅ '{mapel}' ditambahkan ke mapel favorit.")
+
+
+def lihat_favorit():
+    print("\n=== Daftar Mapel Favorit ===")
+    if not mapel_favorit:
+        print("Belum ada mapel favorit.")
+        return
+    for i, m in enumerate(mapel_favorit, start=1):
+        print(f"{i}. {m}")
+
+
+def hapus_favorit():
+    print("\n=== Hapus Mapel Favorit ===")
+    if not mapel_favorit:
+        print("Belum ada mapel favorit.")
+        return
+    m = input("Masukkan nama mapel yang ingin dihapus dari favorit: ").strip()
+    if not m:
+        print("Nama kosong. Batal.")
+        return
+    if m not in mapel_favorit:
+        print(f"'{m}' tidak ditemukan di daftar favorit.")
+        return
+    mapel_favorit.remove(m)
+    print(f"✅ '{m}' telah dihapus dari favorit.")
+
+
 def menu():
     print("\n=== Study Log App ===")
     print("1. Tambah catatan belajar")
     print("2. Lihat catatan belajar")
     print("3. Total waktu belajar")
     print("4. Keluar")
+    print("5. Tambah mapel favorit")
+    print("6. Lihat mapel favorit")
+    print("7. Hapus mapel favorit")
 
 while True:
     menu()
@@ -83,6 +128,12 @@ while True:
         lihat_catatan()
     elif pilihan == "3":
         total_waktu()
+    elif pilihan == "5":
+        tambah_favorit()
+    elif pilihan == "6":
+        lihat_favorit()
+    elif pilihan == "7":
+        hapus_favorit()
     elif pilihan == "4":
         print("Terima kasih, terus semangat belajar!")
         break
