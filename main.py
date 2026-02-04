@@ -79,7 +79,7 @@ def tambah_favorit():
     if mapel in mapel_favorit:
         print(f"'{mapel}' sudah ada dalam daftar favorit.")
         return
-    mapel_favorit.append(mapel)
+mapel_favorit.append(mapel)
     print(f"✅ '{mapel}' ditambahkan ke mapel favorit.")
 
 
@@ -88,8 +88,24 @@ def lihat_favorit():
     if not mapel_favorit:
         print("Belum ada mapel favorit.")
         return
+
+    # Gambaran bunga sederhana untuk membuat tampilan lebih menarik
+    flower_art = """
+          .-.
+         /   \
+        |  .-.|
+        | (   )    🌸 🌼 🌻
+         \ `-'
+          `-'
+    """
+    print(flower_art)
+    print("🌸  Mapel Favorit Anda  🌸\n")
+
     for i, m in enumerate(mapel_favorit, start=1):
         print(f"{i}. {m}")
+
+    print("\n" + "🌼 " * 6)
+    input("\nTekan Enter untuk kembali ke menu...")
 
 
 def hapus_favorit():
