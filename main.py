@@ -79,7 +79,7 @@ def tambah_favorit():
     if mapel in mapel_favorit:
         print(f"'{mapel}' sudah ada dalam daftar favorit.")
         return
-mapel_favorit.append(mapel)
+    mapel_favorit.append(mapel)
     print(f"✅ '{mapel}' ditambahkan ke mapel favorit.")
 
 
